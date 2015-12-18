@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/lsd.h
+
+/home/tgf/Downloads/pylsd/source/src/lsd.cpp
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+limits.h
+-
+float.h
+-
+lsd.h
+-
+

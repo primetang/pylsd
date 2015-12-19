@@ -47,7 +47,7 @@ for i in xrange(lines.shape[0]):
     pt2 = (int(lines[i, 2]), int(lines[i, 3]))
     width = lines[i, 4]
     cv2.line(src, pt1, pt2, (0, 0, 255), int(np.ceil(width / 2)))
-cv2.imwrite(os.path.join(folder, 'PIL_' + imgName.split('.')[0] + '.jpg'), src)
+cv2.imwrite(os.path.join(folder, 'cv2_' + imgName.split('.')[0] + '.jpg'), src)
 ```
 
 * by using PIL(Image) module

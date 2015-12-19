@@ -71,15 +71,15 @@ for i in xrange(lines.shape[0]):
 img.save(os.path.join(folder, 'PIL_' + imgName.split('.')[0] + '.jpg'))
 ```
 
-The follow is the result:
+The following is the result:
 
-* car.jpg
+* car.jpg by using cv2 module
 
 ![](https://github.com/primetang/pylsd/blob/master/example/car.jpg)
 
 ![](https://github.com/primetang/pylsd/blob/master/example/cv2_car.jpg)
 
-* house.png
+* house.png by using PIL(Image) module
 
 ![](https://github.com/primetang/pylsd/blob/master/example/house.png)
 

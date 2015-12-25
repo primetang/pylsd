@@ -1,1 +1,0 @@
-/home/tgf/Downloads/pylsd/source/build/CMakeFiles/lsd.dir

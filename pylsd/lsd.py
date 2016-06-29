@@ -19,10 +19,10 @@ def lsd(src):
     src = (ctypes.c_double * lens)(*src)
     lsdlib.lsdGet(src, ctypes.c_int(rows), ctypes.c_int(cols), temp)
 
-    fp = open(temp, 'r')
+    fp = open('D', 'r')
     cnt = fp.read().strip().split(' ')
     fp.close()
-    os.remove(temp)
+    os.remove('D')
 
     count = int(cnt[0])
     dim = int(cnt[1])

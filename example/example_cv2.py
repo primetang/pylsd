@@ -14,7 +14,7 @@ folder, imgName = os.path.split(fullName)
 src = cv2.imread(fullName, cv2.IMREAD_COLOR)
 gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 lines = lsd(gray)
-for i in xrange(lines.shape[0]):
+for i in range(lines.shape[0]):
     pt1 = (int(lines[i, 0]), int(lines[i, 1]))
     pt2 = (int(lines[i, 2]), int(lines[i, 3]))
     width = lines[i, 4]

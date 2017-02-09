@@ -5,4 +5,4 @@
 # @Link    : https://github.com/primetang/pylsd
 # @Version : 0.0.1
 
-from pylsd import lsd
+from lsd import lsd

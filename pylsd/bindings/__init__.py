@@ -5,4 +5,4 @@
 # @Link    : https://github.com/primetang/pylsd
 # @Version : 0.0.1
 
-from lsd_ctypes import *
+from .lsd_ctypes import *

@@ -31,7 +31,7 @@ def load_lsd_library():
             try:
                 lsdlib = ctypes.cdll[os.path.join(root_dir, libdir, libname)]
                 return lsdlib
-            except Exception, e:
+            except Exception as e:
                 pass
         tmp = os.path.dirname(root_dir)
         if tmp == root_dir:

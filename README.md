@@ -1,11 +1,11 @@
 pylsd
 =============
 
-###1. Introduction
+### 1. Introduction
 
 pylsd is the python bindings for [LSD - Line Segment Detector](http://www.ipol.im/pub/art/2012/gjmr-lsd/).
 
-###2. Install
+### 2. Install
 
 This package uses distutils, which is the default way of installing python modules. To install in your home directory, securely run the following:
 ```
@@ -19,9 +19,9 @@ Or directly through `pip` to install it:
 [sudo] pip install pylsd
 ```
 
-###3. Usage
+### 3. Usage
 
-We can use the package by using `from pylsd import lsd`, and `lines = lsd(src)` is the call format for the `lsd` function, where `src` is a Grayscale Image (`H * W` numpy.array), and the return value `lines` is the Detected Line Segment, `lines` is an `N * 5` numpy.array, each row represents a straight line, the 5-dimensional vector is:
+We can use the package by using `from pylsd.lsd import lsd`, and `lines = lsd(src)` is the call format for the `lsd` function, where `src` is a Grayscale Image (`H * W` numpy.array), and the return value `lines` is the Detected Line Segment, `lines` is an `N * 5` numpy.array, each row represents a straight line, the 5-dimensional vector is:
 
 `[point1.x, point1.y, point2.x, point2.y, width]`
 
@@ -34,7 +34,7 @@ According to these presentations, we can use it just like the following code ([h
 import cv2
 import numpy as np
 import os
-from pylsd import lsd
+from pylsd.lsd import lsd
 fullName = 'car.jpg'
 folder, imgName = os.path.split(fullName)
 src = cv2.imread(fullName, cv2.IMREAD_COLOR)
@@ -54,7 +54,7 @@ cv2.imwrite(os.path.join(folder, 'cv2_' + imgName.split('.')[0] + '.jpg'), src)
 from PIL import Image, ImageDraw
 import numpy as np
 import os
-from pylsd import lsd
+from pylsd.lsd import lsd
 fullName = 'house.png'
 folder, imgName = os.path.split(fullName)
 img = Image.open(fullName)

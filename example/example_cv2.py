@@ -8,7 +8,7 @@
 import cv2
 import numpy as np
 import os
-from pylsd import lsd
+from pylsd.lsd import lsd
 fullName = 'car.jpg'
 folder, imgName = os.path.split(fullName)
 src = cv2.imread(fullName, cv2.IMREAD_COLOR)

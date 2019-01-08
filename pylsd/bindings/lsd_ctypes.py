@@ -8,8 +8,6 @@
 import ctypes
 import os
 import sys
-import random
-import numpy as np
 
 
 def load_lsd_library():

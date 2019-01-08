@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Date    : 2015-12-19 02:09:53
-# @Author  : Gefu Tang (tanggefu@gmail.com)
-# @Link    : https://github.com/primetang/pylsd
-# @Version : 0.0.1
 
-from .bindings.lsd_ctypes import *
-
+import os.path
+import ctypes
+import numpy as np
+from .bindings.lsd_ctypes import lsdlib
 
 def lsd(src):
     rows, cols = src.shape

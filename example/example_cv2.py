@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Date    : 2015-12-19 02:09:53
-# @Author  : Gefu Tang (tanggefu@gmail.com)
-# @Link    : https://github.com/primetang/pylsd
-# @Version : 0.0.1
 
 import cv2
 import numpy as np
 import os
-from pylsd import lsd
+from pylsd.lsd import lsd
 fullName = 'car.jpg'
 folder, imgName = os.path.split(fullName)
 src = cv2.imread(fullName, cv2.IMREAD_COLOR)

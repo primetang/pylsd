@@ -2093,7 +2093,7 @@ void writeNtl(ntuple_list ntl, char* file)
     FILE *fp;
     if ((fp = fopen(file, "w")) == NULL)
     {
-        printf("cannot open file\n");
+        printf("cannot open file '%s'\n", file);
         return;
     }
     fprintf(fp, "%d ", ntl->size);

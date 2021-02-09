@@ -399,6 +399,26 @@ void free_image_double(image_double i)
 /*----------------------------------------------------------------------------*/
 /** Create a new image_double of size 'xsize' times 'ysize'.
  */
+image_double new_empty_image_double(unsigned int xsize, unsigned int ysize)
+{
+    image_double image;
+
+    /* check parameters */
+    if ( xsize == 0 || ysize == 0 ) error("new_image_double: invalid image size.");
+
+    /* get memory */
+    image = (image_double) malloc( sizeof(struct image_double_s) );
+    if ( image == NULL ) error("not enough memory.");
+    /* set image size */
+    image->xsize = xsize;
+    image->ysize = ysize;
+
+    return image;
+}
+
+/*----------------------------------------------------------------------------*/
+/** Create a new image_double of size 'xsize' times 'ysize'.
+ */
 image_double new_image_double(unsigned int xsize, unsigned int ysize)
 {
     image_double image;
@@ -2106,7 +2126,7 @@ void writeNtl(ntuple_list ntl, char* file)
 }
 
 void lsdGet(double* src, int rows, int cols, char* file, double scale=0.8, double sigma_scale=0.6, double quant=2.0, double ang_th=22.5, double eps=0.0, double density_th=0.7, int n_bins=1024, double max_grad=255.0) {
-    image_double image = new_image_double(cols, rows);
+    image_double image = new_empty_image_double(cols, rows);
     image->data = src;
     ntuple_list ntl = lsd(image, scale, sigma_scale, quant, ang_th, eps, density_th, n_bins, max_grad);
     writeNtl(ntl, file);

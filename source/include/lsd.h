@@ -252,7 +252,7 @@ ntuple_list LineSegmentDetection( image_double image, double scale,
 
     @return a 5-tuple list of detected line segments.
  */
-ntuple_list lsd_scale(image_double image, double scale);
+ntuple_list lsd_scale(image_double image, double scale, double sigma_scale, double quant, double ang_th, double eps, double density_th, int n_bins, double max_grad);
 
 /*----------------------------------------------------------------------------*/
 /* LSD Simple Interface                                                       */
@@ -263,10 +263,10 @@ ntuple_list lsd_scale(image_double image, double scale);
 
     @return a 5-tuple list of detected line segments.
  */
-ntuple_list lsd(image_double image);
+ntuple_list lsd(image_double image, double scale, double sigma_scale, double quant, double ang_th, double eps, double density_th, int n_bins, double max_grad);
 
 
-extern "C" LSD_EXPORT void lsdGet(double* src, int rows, int cols, char* file);
+extern "C" LSD_EXPORT void lsdGet(double* src, int rows, int cols, char* file, double scale, double sigma_scale, double quant, double ang_th, double eps, double density_th, int n_bins, double max_grad);
 
 #endif /* !LSD_HEADER */
 /*----------------------------------------------------------------------------*/

@@ -6,6 +6,9 @@
 # @Version : 0.0.1
 
 from .bindings.lsd_ctypes import *
+from . import *
+import numpy as np
+import os
 
 
 def lsd(src):
@@ -13,11 +16,11 @@ def lsd(src):
     src = src.reshape(1, rows * cols).tolist()[0]
 
     temp = os.path.abspath(str(np.random.randint(
-        1, 1000000)) + 'ntl.txt').replace('\\', '/')
+        1, 1000000)) + 'ntl.txt').replace('\\', '/').encode('utf-8')
 
     lens = len(src)
     src = (ctypes.c_double * lens)(*src)
-    lsdlib.lsdGet(src, ctypes.c_int(rows), ctypes.c_int(cols), temp)
+    lsdlib.lsdGet(src, ctypes.c_int(rows), ctypes.c_int(cols), ctypes.c_char_p(temp))
 
     fp = open(temp, 'r')
     cnt = fp.read().strip().split(' ')

@@ -22,7 +22,15 @@ def lsd(src):
         fname = fp.name
         fname_bytes = bytes(fp.name) if sys.version_info < (3, 0) else bytes(fp.name, 'utf8')
 
-    lsdlib.lsdGet(src, ctypes.c_int(rows), ctypes.c_int(cols), fname_bytes)
+    lsdlib.lsdGet(src, ctypes.c_int(rows), ctypes.c_int(cols), fname_bytes,
+                  ctypes.c_double(scale),
+                  ctypes.c_double(sigma_scale),
+                  ctypes.c_double(quant),
+                  ctypes.c_double(ang_th),
+                  ctypes.c_double(eps),
+                  ctypes.c_double(density_th),
+                  ctypes.c_int(n_bins),
+                  ctypes.c_double(max_grad))
 
     with open(fname, 'r') as fp:
         output = fp.read()

@@ -12,6 +12,23 @@ import numpy as np
 from .bindings.lsd_ctypes import lsdlib
 
 def lsd(src):
+    """Analyse image with Line Segment Detector.
+
+    Args:
+        src (Numpy object) : 2-d grayscale image array (HxW) to analyse.
+
+    Keyword Args:
+        sigma_scale (double) : Sigma for Gaussian filter is computed as sigma = sigma_scale/scale.
+        quant (double) : Bound to the quantization error on the gradient norm.
+        ang_th (double) : Gradient angle tolerance in degrees.
+        eps (double) : Detection threshold, -log10(NFA).
+        density_th (double) : Minimal density of region points in rectangle.
+        n_bins (int) : Number of bins in pseudo-ordering of gradient modulus.
+        max_grad (double) : Gradient modulus in the highest bin. The default value corresponds to the highest gradient modulus on images with gray levels in [0,255].
+
+    Returns:
+        A list of line candidates as 5-tuples of (x1, y1, x2, y2, width).
+    """
     rows, cols = src.shape
     src = src.reshape(1, rows * cols).tolist()[0]
 

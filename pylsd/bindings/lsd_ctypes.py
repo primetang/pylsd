@@ -12,11 +12,16 @@ import glob
 def load_lsd_library():
     # may fail if CWD (via sys.path) contains pylsd/bindings/__init__.py,
     # but otherwise contains the auto-built library for this platform/installation:
-    lib_name = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'lib.*.so')
-    lib_path = glob.glob(lib_name)
+    lib_dir = os.path.dirname(os.path.dirname(__file__))
+    lib_path = None
+    for lib_name in ['lib.*.so', 'lib.*.dll', 'lib.*.dylib', 'lib.*.lib']:
+        libs = glob.glob(os.path.join(lib_dir, lib_name))
+        if libs:
+            lib_path = libs[0]
+            break
     if not lib_path:
         return None
-    return ctypes.cdll[lib_path[0]]
+    return ctypes.cdll[lib_path]
 
 lsdlib = load_lsd_library()
 if lsdlib == None:

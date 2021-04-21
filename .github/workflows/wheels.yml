@@ -9,15 +9,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        python-version: ['3.6', '3.7', '3.8', '3.9', 'pypy-3.6']
+        exclude:
+          # giving up; MSVC linker error seems to be unescapable:
+          # "unresolved external symbol PyInit_lib"
+          - os: windows-latest
+    env:
+      CIBW_PROJECT_REQUIRES_PYTHON: ">=3.6"
 
     steps:
       - uses: actions/checkout@v2
 
       # Used to host cibuildwheel
       - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
 
       - name: Install cibuildwheel
         run: |
@@ -26,9 +29,7 @@ jobs:
 
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
-        env:
-          CIBW_SKIP: cp27-* cp35-* pp27* pp35*
-
+          
       - uses: actions/upload-artifact@v2
         with:
           path: ./wheelhouse/*.whl

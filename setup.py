@@ -5,11 +5,17 @@
 # @Link    : https://github.com/primetang/pylsd
 # @Version : 0.0.3
 
-from setuptools import setup
+from setuptools import setup, Extension
+
+clib = Extension('pylsd.lib',
+                 sources=['source/src/lsd.cpp'],
+                 include_dirs=['source/include'],
+                 depends=['source/include/lsd.h'],
+                 language="c++")
 
 setup(
     name='pylsd',
-    version='0.0.3',
+    version='0.0.4',
     description='pylsd is the python bindings for LSD - Line Segment Detector',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -19,7 +25,7 @@ setup(
     license='BSD',
     keywords=["LSD", 'line segmentation'],
     url='https://github.com/kba/pylsd',
-    packages=['pylsd', 'pylsd.bindings', 'pylsd.lib'],
-    package_dir={'pylsd.lib': 'pylsd/lib'},
-    package_data={'pylsd.lib': ['darwin/*.dylib', 'win32/x86/*.dll', 'win32/x64/*.dll', 'linux/*.so']},
+    packages=['pylsd', 'pylsd.bindings'],
+    install_requires=['numpy'],
+    ext_modules=[clib],
 )

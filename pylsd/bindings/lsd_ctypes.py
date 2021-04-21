@@ -7,47 +7,16 @@
 
 import ctypes
 import os
-import sys
-
+import glob
 
 def load_lsd_library():
-
-    root_dir = os.path.abspath(os.path.dirname(__file__))
-
-    libnames = ['linux/liblsd.so']
-    libdir = 'lib'
-    if sys.platform == 'win32':
-        if sys.maxsize > 2 ** 32:
-            libnames = ['win32/x64/lsd.dll', 'win32/x64/liblsd.dll']
-        else:
-            libnames = ['win32/x86/lsd.dll', 'win32/x86/liblsd.dll']
-    elif sys.platform == 'darwin':
-        libnames = ['darwin/liblsd.dylib']
-
-    while root_dir != None:
-        for libname in libnames:
-            try:
-                lsdlib = ctypes.cdll[os.path.join(root_dir, libdir, libname)]
-                return lsdlib
-            except Exception as e:
-                pass
-        tmp = os.path.dirname(root_dir)
-        if tmp == root_dir:
-            root_dir = None
-        else:
-            root_dir = tmp
-
-    # if we didn't find the library so far, try loading without
-    # a full path as a last resort
-    for libname in libnames:
-        try:
-            # print "Trying",libname
-            lsdlib = ctypes.cdll[libname]
-            return lsdlib
-        except:
-            pass
-
-    return None
+    # may fail if CWD (via sys.path) contains pylsd/bindings/__init__.py,
+    # but otherwise contains the auto-built library for this platform/installation:
+    lib_name = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'lib.*.so')
+    lib_path = glob.glob(lib_name)
+    if not lib_path:
+        return None
+    return ctypes.cdll[lib_path[0]]
 
 lsdlib = load_lsd_library()
 if lsdlib == None:

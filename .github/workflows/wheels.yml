@@ -8,23 +8,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, windows-2019, macOS-10.15]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        python-version: ['2.7', '3.6', '3.7', '3.8', '3.9', 'pypy-2.7', 'pypy-3.6']
+        exclude:
+          - os: windows-latest
+            python-version: '2.7'
 
     steps:
       - uses: actions/checkout@v2
 
       # Used to host cibuildwheel
       - uses: actions/setup-python@v2
-        # with: python-version: '3.x'
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Install cibuildwheel
         run: |
           python -m pip install --upgrade pip
-          python -m pip install cibuildwheel==1.10.0 twine
-
-      - name: Install Visual C++ on Windows
-        if: runner.os == 'Windows'
-        run: choco install vcpython27 -f -y
+          python -m pip install cibuildwheel==1.10.0
 
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse

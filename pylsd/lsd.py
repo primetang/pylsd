@@ -11,13 +11,14 @@ import numpy as np
 
 from .bindings.lsd_ctypes import lsdlib
 
-def lsd(src):
+def lsd(src, scale=0.8, sigma_scale=0.6, quant=2.0, ang_th=22.5, eps=0.0, density_th=0.7, n_bins=1024, max_grad=255.0):
     """Analyse image with Line Segment Detector.
 
     Args:
         src (Numpy object) : 2-d grayscale image array (HxW) to analyse.
 
     Keyword Args:
+        scale (double) : Scale the image by Gaussian filter.
         sigma_scale (double) : Sigma for Gaussian filter is computed as sigma = sigma_scale/scale.
         quant (double) : Bound to the quantization error on the gradient norm.
         ang_th (double) : Gradient angle tolerance in degrees.

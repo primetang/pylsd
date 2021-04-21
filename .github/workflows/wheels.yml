@@ -9,10 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        python-version: ['2.7', '3.6', '3.7', '3.8', '3.9', 'pypy-2.7', 'pypy-3.6']
-        exclude:
-          - os: windows-latest
-            python-version: '2.7'
+        python-version: ['3.6', '3.7', '3.8', '3.9', 'pypy-3.6']
 
     steps:
       - uses: actions/checkout@v2
@@ -29,9 +26,8 @@ jobs:
 
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
-        # to supply options, put them in 'env', like:
-        # env:
-        #   CIBW_SOME_OPTION: value
+        env:
+          CIBW_SKIP: cp27-* cp35-* pp27* pp35*
 
       - uses: actions/upload-artifact@v2
         with:

@@ -22,6 +22,10 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install cibuildwheel==1.10.0 twine
 
+      - name: Install Visual C++ on Windows
+        if: runner.os == 'Windows'
+        run: choco install vcpython27 -f -y
+
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         # to supply options, put them in 'env', like:

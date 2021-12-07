@@ -10,6 +10,9 @@ from .bindings.lsd_ctypes import *
 
 def lsd(src):
     rows, cols = src.shape
+    if rows<2 or cols<2:
+        raise ValueError("Inappropriate image size")
+        
     src = src.reshape(1, rows * cols).tolist()[0]
 
     temp = os.path.abspath(str(np.random.randint(
